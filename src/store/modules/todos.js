@@ -43,6 +43,14 @@ const actions = {
     await axios.delete(`http://jsonplaceholder.typicode.com/todos/${id}`);
     commit('removeTodo', id);
   },
+  // 过滤todo
+  async filterTodos({ commit }, count) {
+    console.log(count);
+    const response = await axios.get(
+      `http://jsonplaceholder.typicode.com/todos/?_limit=${count}`
+    );
+    commit('setTodos', response.data);
+  },
 };
 
 export default {
