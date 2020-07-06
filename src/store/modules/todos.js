@@ -17,6 +17,14 @@ const mutations = {
   removeTodo: (state, id) => {
     state.todos = state.todos.filter((todo) => todo.id !== id);
   },
+  updatedTodo: (state, updatedTodo) => {
+    const index = state.todos.findIndex((todo) => todo.id === updatedTodo.id);
+    console.log(index);
+    if (index !== -1) {
+      // 删除匹配的index，然后删除1个，向数组添加更新内容
+      state.todos.splice(index, 1, updatedTodo);
+    }
+  },
 };
 
 const actions = {
@@ -50,6 +58,14 @@ const actions = {
       `http://jsonplaceholder.typicode.com/todos/?_limit=${count}`
     );
     commit('setTodos', response.data);
+  },
+  // 更新todo
+  async updatedTodo({ commit }, updatedTodo) {
+    const response = await axios.put(
+      `http://jsonplaceholder.typicode.com/todos/${updatedTodo.id}`,
+      updatedTodo
+    );
+    commit('updatedTodo', response.data);
   },
 };
 
