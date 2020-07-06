@@ -1,3 +1,3 @@
 # vuex-todo-app
 
-## lesson3 添加数据
+## lesson4 删除数据

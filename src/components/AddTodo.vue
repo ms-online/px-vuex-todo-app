@@ -29,6 +29,7 @@ export default {
     onSubmit() {
       //分发action
       this.addTodo(this.title);
+      this.title = '';
     },
   },
 };

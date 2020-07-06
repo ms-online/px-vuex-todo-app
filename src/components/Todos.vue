@@ -4,6 +4,7 @@
     <div class="todos">
       <div class="todo" v-for="(todo, index) in AllTodos" :key="index">
         {{ todo.title }}
+        <i @click="deleteTodo(todo.id)" class="fas fa-trash"></i>
       </div>
     </div>
   </div>
@@ -14,7 +15,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'Todos',
   computed: mapGetters(['AllTodos']),
-  methods: mapActions(['fetchTodos']),
+  methods: mapActions(['fetchTodos', 'deleteTodo']),
   created() {
     this.fetchTodos();
   },
@@ -35,6 +36,14 @@ export default {
   border-radius: 5px;
   text-align: center;
   position: relative;
+  cursor: pointer;
+}
+
+i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
   cursor: pointer;
 }
 </style>
